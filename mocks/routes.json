@@ -1,0 +1,5 @@
+{
+  "/addStudent": "/students",
+  "/editStudent/:id": "/students/:id",
+  "/deleteStudent/:id": "/students/:id"
+}

@@ -5,11 +5,11 @@ import { resolvers } from "./resolvers/index.js";
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 }
+  listen: { port: 4000 },
 });
 
 console.log(`🚀 GraphQL running at ${url}`);

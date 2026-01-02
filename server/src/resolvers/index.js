@@ -1,10 +1,10 @@
-import { projectResolver } from "./project.resolver.js";
+import { projectResolver } from "./studentResolver.js";
 
 export const resolvers = {
   Query: {
-    ...projectResolver.Query
+    ...resolvers.Query
   },
   Mutation: {
-    ...projectResolver.Mutation
+    ...resolvers.Mutation
   }
 };

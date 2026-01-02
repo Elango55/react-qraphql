@@ -1,22 +1,18 @@
-export const typeDefs = `
-  type Task {
-    id: ID!
-    title: String!
-    status: String!
-  }
-
-  type Project {
+export const typeDefs = `#graphql
+  type Student {
     id: ID!
     name: String!
-    tasks: [Task]
+    age: Int!
+    course: String!
   }
 
   type Query {
-    projects: [Project]
+    students: [Student]
   }
 
   type Mutation {
-    addProject(name: String!): Project
-    addTask(projectId: ID!, title: String!): Task
+    addStudent(name: String!, age: Int!, course: String!): Student
+    editStudent(id: ID!, name: String!, age: Int!, course: String!): Student
+    deleteStudent(id: ID!): Boolean
   }
 `;

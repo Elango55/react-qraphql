@@ -1,12 +1,16 @@
 {
-  "projects": [
+  "students": [
     {
       "id": "1",
-      "name": "Portfolio Website",
-      "tasks": [
-        { "id": "t1", "title": "Design UI", "status": "TODO" },
-        { "id": "t2", "title": "Build React App", "status": "IN_PROGRESS" }
-      ]
+      "name": "Arun",
+      "age": 20,
+      "course": "Computer Science"
+    },
+    {
+      "id": "2",
+      "name": "Priya",
+      "age": 22,
+      "course": "Mathematics"
     }
   ]
 }
