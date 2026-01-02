@@ -1,0 +1,12 @@
+{
+  "name": "graphql-server",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.9.3",
+    "graphql": "^16.8.1",
+    "axios": "^1.6.0"
+  }
+}

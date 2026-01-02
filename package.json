@@ -1,0 +1,14 @@
+{
+  "name": "react-graphql-fullstack",
+  "private": true,
+  "scripts": {
+    "setup": "npm install --prefix client && npm install --prefix server && npm install --prefix mocks",
+    "mocks": "npx json-server --watch mocks/db.json --port 5000",
+    "graphql": "npm run start --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently -k -n MOCKS,GRAPHQL,CLIENT \"npm run mocks\" \"npm run graphql\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

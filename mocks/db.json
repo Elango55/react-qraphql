@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "name": "Portfolio Website",
+      "tasks": [
+        { "id": "t1", "title": "Design UI", "status": "TODO" },
+        { "id": "t2", "title": "Build React App", "status": "IN_PROGRESS" }
+      ]
+    }
+  ]
+}
