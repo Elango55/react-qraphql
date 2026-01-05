@@ -13,7 +13,7 @@ export const Mutation = {
     return StudentDataSource.updateStudent(id, {
       name,
       email,
-      course
+      course,
     });
-  }
+  },
 };

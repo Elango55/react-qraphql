@@ -30,22 +30,32 @@ export default function StudentList() {
   const [editingId, setEditingId] = useState<string | null>(null);
 
   /* ---------------- QUERY ---------------- */
-  const { data, loading } = useQuery(GET_STUDENTS, {
-    variables: { page, limit: LIMIT, search },
-    fetchPolicy: "cache-and-network"
+  const { data, loading, refetch } = useQuery(GET_STUDENTS, {
+    variables: { page, limit: LIMIT, search: "" },
+    fetchPolicy: "network-only"
   });
 
   /* ---------------- MUTATIONS ---------------- */
   const [addStudent] = useMutation(ADD_STUDENT, {
-    refetchQueries: ["Students"]
+    onCompleted: () => {
+      refetch({ page, limit: LIMIT, search });
+      setForm(emptyForm);
+      setEditingId(null);
+    }
   });
 
   const [updateStudent] = useMutation(UPDATE_STUDENT, {
-    refetchQueries: ["Students"]
+    onCompleted: () => {
+      refetch({ page, limit: LIMIT, search });
+      setForm(emptyForm);
+      setEditingId(null);
+    }
   });
 
   const [deleteStudent] = useMutation(DELETE_STUDENT, {
-    refetchQueries: ["Students"]
+    onCompleted: () => {
+      refetch({ page, limit: LIMIT, search });
+    }
   });
 
   /* ---------------- HANDLERS ---------------- */
@@ -56,19 +66,20 @@ export default function StudentList() {
       updateStudent({
         variables: {
           id: editingId,
-          input: form
+          name: form.name,
+          email: form.email,
+          course: form.course
         }
       });
     } else {
       addStudent({
         variables: {
-          input: form
+          name: form.name,
+          email: form.email,
+          course: form.course
         }
       });
     }
-
-    setForm(emptyForm);
-    setEditingId(null);
   };
 
   const handleEdit = (student: Student) => {
@@ -86,8 +97,23 @@ export default function StudentList() {
     }
   };
 
+  // Search button click
+  const handleSearch = () => {
+    setPage(1); // reset page
+    refetch({ page: 1, limit: LIMIT, search });
+  };
+
+  // If search is cleared, show all records
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1);
+    if (value.trim() === "") {
+      refetch({ page: 1, limit: LIMIT, search: "" });
+    }
+  };
+
   /* ---------------- DATA ---------------- */
-  const students: Student[] = data?.students?.data ?? [];
+  const students: Student[] = (data?.students?.data ?? []).slice().reverse();
   const totalCount = data?.students?.totalCount ?? 0;
   const totalPages = Math.ceil(totalCount / LIMIT);
 
@@ -100,13 +126,11 @@ export default function StudentList() {
       {/* SEARCH */}
       <S.Header>
         <S.Input
-          placeholder="Search students..."
+          placeholder="Search by name..."
           value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1);
-          }}
+          onChange={(e) => handleSearchChange(e.target.value)}
         />
+        <S.Button onClick={handleSearch}>Search</S.Button>
       </S.Header>
 
       {/* FORM */}
@@ -126,7 +150,6 @@ export default function StudentList() {
           value={form.course}
           onChange={(e) => setForm({ ...form, course: e.target.value })}
         />
-
         <S.Button primary onClick={handleSubmit}>
           {editingId ? "Update Student" : "Add Student"}
         </S.Button>
@@ -150,7 +173,6 @@ export default function StudentList() {
               </td>
             </tr>
           )}
-
           {students.map((student) => (
             <tr key={student.id}>
               <td>{student.name}</td>
@@ -171,7 +193,10 @@ export default function StudentList() {
       <S.Pagination>
         <S.Button
           disabled={page === 1}
-          onClick={() => setPage((p) => p - 1)}
+          onClick={() => {
+            setPage((p) => p - 1);
+            refetch({ page: page - 1, limit: LIMIT, search });
+          }}
         >
           Prev
         </S.Button>
@@ -182,7 +207,10 @@ export default function StudentList() {
 
         <S.Button
           disabled={page === totalPages || totalPages === 0}
-          onClick={() => setPage((p) => p + 1)}
+          onClick={() => {
+            setPage((p) => p + 1);
+            refetch({ page: page + 1, limit: LIMIT, search });
+          }}
         >
           Next
         </S.Button>

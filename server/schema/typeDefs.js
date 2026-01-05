@@ -10,6 +10,7 @@ const typeDefs = `#graphql
     data: [Student!]!
     page: Int!
     limit: Int!
+    totalCount: Int!
   }
 
   type Query {

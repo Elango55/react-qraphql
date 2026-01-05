@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const GET_STUDENTS = gql`
   query Students($page: Int, $limit: Int, $search: String) {
     students(page: $page, limit: $limit, search: $search) {
+      totalCount
       data {
         id
         name
@@ -11,7 +12,6 @@ export const GET_STUDENTS = gql`
       }
       page
       limit
-      totalCount
     }
   }
 `;
@@ -25,7 +25,12 @@ export const ADD_STUDENT = gql`
 `;
 
 export const UPDATE_STUDENT = gql`
-  mutation UpdateStudent($id: ID!, $name: String!, $email: String!, $course: String!) {
+  mutation UpdateStudent(
+    $id: ID!
+    $name: String!
+    $email: String!
+    $course: String!
+  ) {
     updateStudent(id: $id, name: $name, email: $email, course: $course) {
       id
     }
