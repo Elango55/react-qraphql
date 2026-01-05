@@ -1,12 +1,12 @@
 {
-  "name": "graphql-server",
+  "name": "student-graphql-server",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "@apollo/server": "^4.9.3",
+    "@apollo/server": "^4.10.0",
     "graphql": "^16.8.1",
-    "axios": "^1.6.0"
+    "node-fetch": "^3.3.2"
   }
 }

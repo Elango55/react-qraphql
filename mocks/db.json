@@ -1,12 +1,58 @@
 {
-  "projects": [
+  "students": [
     {
-      "id": "1",
-      "name": "Portfolio Website",
-      "tasks": [
-        { "id": "t1", "title": "Design UI", "status": "TODO" },
-        { "id": "t2", "title": "Build React App", "status": "IN_PROGRESS" }
-      ]
+      "id": 2,
+      "name": "Divya Priya",
+      "email": "divya.priya@gmail.com",
+      "course": "Information Technology"
+    },
+    {
+      "id": 3,
+      "name": "Suresh Babu",
+      "email": "suresh.babu@gmail.com",
+      "course": "Mechanical Engineering"
+    },
+    {
+      "id": 4,
+      "name": "Meena Lakshmi",
+      "email": "meena.lakshmi@gmail.com",
+      "course": "Civil Engineering"
+    },
+    {
+      "id": 5,
+      "name": "Ravi Shankar",
+      "email": "ravi.shankar@gmail.com",
+      "course": "Electrical Engineering"
+    },
+    {
+      "id": 6,
+      "name": "Anitha Devi",
+      "email": "anitha.devi@gmail.com",
+      "course": "Electronics"
+    },
+    {
+      "id": 7,
+      "name": "Karthik Raj",
+      "email": "karthik.raj@gmail.com",
+      "course": "Artificial Intelligence"
+    },
+    {
+      "id": 8,
+      "name": "Priya Nandhini",
+      "email": "priya.nandhini@gmail.com",
+      "course": "Data Science"
+    },
+    {
+      "id": 9,
+      "name": "Vignesh Kumar",
+      "email": "vignesh.kumar@gmail.com",
+      "course": "Cyber Security"
+    },
+    {
+      "id": 10,
+      "name": "Lakshmi Narayanan",
+      "email": "lakshmi.narayanan@gmail.com",
+      "course": "Cloud Computing"
     }
   ]
 }
